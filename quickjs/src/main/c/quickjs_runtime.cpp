@@ -604,7 +604,11 @@ extern "C"
 
     DLLEXPORT int32_t jsIsPromise(JSContext *ctx, JSValueConst *val)
     {
-        return JS_IsPromise(ctx, *val);
+        // JS_IsPromise was removed in QuickJS 2025. Use JS_PromiseState instead
+        // which returns 0 for pending, 1 for fulfilled, 2 for rejected
+        // Return 1 if it's a promise (pending, fulfilled, or rejected)
+        int state = JS_PromiseState(ctx, *val);
+        return (state >= 0) ? 1 : 0;  // If state >= 0, it's a promise
     }
 
     DLLEXPORT int32_t jsIsArray(JSContext *ctx, JSValueConst *val)

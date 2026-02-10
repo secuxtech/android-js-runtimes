@@ -88,3 +88,4 @@ download-jsc/jsc-download-package
 download-jsc/libs
 
 !/**/.gitkeep
+*backup/

@@ -6,9 +6,8 @@ include_directories(
     src/main/c/quickjs
 )
 
-add_definitions(-DCONFIG_BIGNUM)
-# 確保版本號與檔案內容相符（你提供的範例是 2021-03-27）
-add_definitions(-DCONFIG_VERSION="2021-03-27")
+# 確保版本號與檔案內容相符（升級至 2025-09-13）
+add_definitions(-DCONFIG_VERSION="2025-09-13")
 
 add_library( fastdev_quickjs_runtime
 
@@ -19,13 +18,13 @@ add_library( fastdev_quickjs_runtime
              src/main/c/quickjs_runtime.cpp
 
             src/main/c/quickjs/cutils.c
+            src/main/c/quickjs/dtoa.c
             src/main/c/quickjs/libregexp.c
             src/main/c/quickjs/libunicode.c
             src/main/c/quickjs/quickjs.c
-            src/main/c/quickjs/libbf.c
     )
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DCONFIG_VERSION=\\\"2021-03-27\\\"")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DCONFIG_VERSION=\\\"2025-09-13\\\"")
 
 find_library(log-lib log)
 target_link_libraries(fastdev_quickjs_runtime ${log-lib})
